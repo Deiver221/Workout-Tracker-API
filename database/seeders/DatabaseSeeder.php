@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Database\Seeders\CategorySeeder;
+use Database\Seeders\ExerciseSeeder;
 use Database\Seeders\MuscleGroupSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,7 +27,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CategorySeeder::class,
-            MuscleGroupSeeder::class
+            MuscleGroupSeeder::class,
+            ExerciseSeeder::class
         ]);
     }
 }

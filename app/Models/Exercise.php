@@ -10,11 +10,11 @@ class Exercise extends Model
 {
     public function category()
     {
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function muscleGroup()
     {
-        $this->belongsTo(MuscleGroup::class);
+        return $this->belongsTo(MuscleGroup::class);
     }
 }
