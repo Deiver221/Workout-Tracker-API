@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\ExerciseController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WorkoutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,4 @@ Route::post("profile", [AuthController::class, "profile"])->middleware('auth:san
 #Exercises Routes
 Route::get("exercises", [ExerciseController::class, 'index']);
 Route::get("exercises/{exercise}", [ExerciseController::class, 'show']);
+Route::post("exercises", [WorkoutController::class, 'store'])->middleware('auth:sanctum');

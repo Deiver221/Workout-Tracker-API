@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Exercise;
+use App\Models\ExerciseWorkout;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +24,6 @@ class Workout extends Model
 
     public function exercise()
     {
-        return $this->belongsToMany(Exercise::class);
+        return $this->belongsToMany(Exercise::class)->using(ExerciseWorkout::class);
     }
 }
