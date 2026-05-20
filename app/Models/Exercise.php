@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Category;
 use App\Models\MuscleGroup;
+use App\Models\Workout;
 use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
@@ -16,5 +17,10 @@ class Exercise extends Model
     public function muscleGroup()
     {
         return $this->belongsTo(MuscleGroup::class);
+    }
+
+    public function workout()
+    {
+        return $this->belongsToMany(Workout::class);
     }
 }
