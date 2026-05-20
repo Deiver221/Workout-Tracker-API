@@ -24,6 +24,9 @@ class Workout extends Model
 
     public function exercise()
     {
-        return $this->belongsToMany(Exercise::class)->using(ExerciseWorkout::class);
+        return $this->belongsToMany(Exercise::class)
+            ->using(ExerciseWorkout::class)
+            ->withPivot(['sets', 'reps', 'rir', 'weight'])
+            ->withTimestamps();
     }
 }

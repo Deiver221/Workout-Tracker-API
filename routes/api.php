@@ -18,4 +18,8 @@ Route::post("profile", [AuthController::class, "profile"])->middleware('auth:san
 #Exercises Routes
 Route::get("exercises", [ExerciseController::class, 'index']);
 Route::get("exercises/{exercise}", [ExerciseController::class, 'show']);
-Route::post("exercises", [WorkoutController::class, 'store'])->middleware('auth:sanctum');
+
+#Workout Routes
+Route::get("workouts", [WorkoutController::class, 'index'])->middleware('auth:sanctum');
+Route::get("workouts/{workout}", [WorkoutController::class, 'show']);
+Route::post("workout", [WorkoutController::class, 'store'])->middleware('auth:sanctum');
