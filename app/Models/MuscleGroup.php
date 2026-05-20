@@ -9,6 +9,6 @@ class MuscleGroup extends Model
 {
     public function exercises()
     {
-        $this->hasMany(Exercise::class);
+        return $this->hasMany(Exercise::class);
     }
 }
