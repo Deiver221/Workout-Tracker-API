@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
             'password' => 'testtest'
         ]);
 
+        User::factory()->create([
+            'name' => 'Test User 2',
+            'email' => 'test2@example.com',
+            'password' => 'testtest'
+        ]);
+
         $this->call([
             CategorySeeder::class,
             MuscleGroupSeeder::class,

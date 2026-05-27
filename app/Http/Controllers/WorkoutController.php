@@ -45,4 +45,14 @@ class WorkoutController extends Controller
 
         return WorkoutResource::collection($workouts);
     }
+
+    public function show (Workout $workout, Request $request)
+    {
+        if($request->user()->id !== $workout->user_id)
+            {
+                abort(404, 'Not found');
+            }
+        $workout->load(['user', 'exercise']);
+        return new WorkoutResource($workout);
+    }
 }

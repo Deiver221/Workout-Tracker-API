@@ -21,5 +21,5 @@ Route::get("exercises/{exercise}", [ExerciseController::class, 'show']);
 
 #Workout Routes
 Route::get("workouts", [WorkoutController::class, 'index'])->middleware('auth:sanctum');
-Route::get("workouts/{workout}", [WorkoutController::class, 'show']);
+Route::get("workouts/{workout}", [WorkoutController::class, 'show'])->middleware('auth:sanctum');
 Route::post("workout", [WorkoutController::class, 'store'])->middleware('auth:sanctum');

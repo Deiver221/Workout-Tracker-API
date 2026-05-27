@@ -11,8 +11,15 @@ class WorkoutSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::first();
+        $users = User::all();
 
+        foreach ($users as $user) {
+            $this->seedWorkoutsForUser($user);
+        }
+    }
+
+    private function seedWorkoutsForUser($user): void
+    {
         $workouts = [
             [
                 'name'         => 'Push Day',
@@ -20,9 +27,9 @@ class WorkoutSeeder extends Seeder
                 'scheduled_at' => now(),
                 'status'       => 'pending',
                 'exercises'    => [
-                    ['name' => 'Bench Press',      'sets' => 4, 'reps' => [10, 10, 8, 8],    'rir' => [2, 2, 1, 1], 'weight' => 80],
-                    ['name' => 'Overhead Press',   'sets' => 3, 'reps' => [10, 10, 10],       'rir' => [2, 2, 2],    'weight' => 50],
-                    ['name' => 'Tricep Pushdown',  'sets' => 3, 'reps' => [12, 12, 12],       'rir' => [1, 1, 1],    'weight' => 30],
+                    ['name' => 'Bench Press',     'sets' => 4, 'reps' => [10, 10, 8, 8], 'rir' => [2, 2, 1, 1], 'weight' => 80],
+                    ['name' => 'Overhead Press',  'sets' => 3, 'reps' => [10, 10, 10],   'rir' => [2, 2, 2],    'weight' => 50],
+                    ['name' => 'Tricep Pushdown', 'sets' => 3, 'reps' => [12, 12, 12],   'rir' => [1, 1, 1],    'weight' => 30],
                 ],
             ],
             [
@@ -31,9 +38,9 @@ class WorkoutSeeder extends Seeder
                 'scheduled_at' => now()->addDays(2),
                 'status'       => 'pending',
                 'exercises'    => [
-                    ['name' => 'Pull Up',     'sets' => 4, 'reps' => [8, 8, 6, 6],     'rir' => [2, 2, 1, 1], 'weight' => 0],
-                    ['name' => 'Barbell Row', 'sets' => 3, 'reps' => [10, 10, 10],      'rir' => [2, 2, 2],    'weight' => 70],
-                    ['name' => 'Barbell Curl','sets' => 3, 'reps' => [12, 12, 12],      'rir' => [1, 1, 1],    'weight' => 30],
+                    ['name' => 'Pull Up',      'sets' => 4, 'reps' => [8, 8, 6, 6],   'rir' => [2, 2, 1, 1], 'weight' => 0],
+                    ['name' => 'Barbell Row',  'sets' => 3, 'reps' => [10, 10, 10],   'rir' => [2, 2, 2],    'weight' => 70],
+                    ['name' => 'Barbell Curl', 'sets' => 3, 'reps' => [12, 12, 12],   'rir' => [1, 1, 1],    'weight' => 30],
                 ],
             ],
             [
@@ -42,9 +49,9 @@ class WorkoutSeeder extends Seeder
                 'scheduled_at' => now()->addDays(4),
                 'status'       => 'pending',
                 'exercises'    => [
-                    ['name' => 'Squat',     'sets' => 4, 'reps' => [8, 8, 6, 6],   'rir' => [2, 2, 1, 1], 'weight' => 100],
-                    ['name' => 'Leg Press', 'sets' => 3, 'reps' => [12, 12, 12],   'rir' => [2, 2, 2],    'weight' => 150],
-                    ['name' => 'Deadlift',  'sets' => 3, 'reps' => [6, 6, 6],      'rir' => [2, 2, 2],    'weight' => 120],
+                    ['name' => 'Squat',     'sets' => 4, 'reps' => [8, 8, 6, 6], 'rir' => [2, 2, 1, 1], 'weight' => 100],
+                    ['name' => 'Leg Press', 'sets' => 3, 'reps' => [12, 12, 12], 'rir' => [2, 2, 2],    'weight' => 150],
+                    ['name' => 'Deadlift',  'sets' => 3, 'reps' => [6, 6, 6],    'rir' => [2, 2, 2],    'weight' => 120],
                 ],
             ],
         ];
@@ -63,8 +70,8 @@ class WorkoutSeeder extends Seeder
                 $exercise = Exercise::where('name', $exerciseData['name'])->first();
                 $exercises[$exercise->id] = [
                     'sets'   => $exerciseData['sets'],
-                    'reps'   => json_encode($exerciseData['reps']),
-                    'rir'    => json_encode($exerciseData['rir']),
+                    'reps'   => $exerciseData['reps'],
+                    'rir'    => $exerciseData['rir'],
                     'weight' => $exerciseData['weight'],
                 ];
             }
