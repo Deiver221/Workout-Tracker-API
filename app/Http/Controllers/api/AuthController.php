@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,10 +36,9 @@ class AuthController extends Controller
         return response()->json($input);
     }
 
-    public function login (Request $request)
+    public function login(Request $request)
     {
-        if(!Auth::attempt($request->only("email", "password")))
-        {
+        if (!Auth::attempt($request->only("email", "password"))) {
             return response()->json([
                 "errors" => ["Credenciales inválidas."]
             ]);
@@ -53,7 +53,7 @@ class AuthController extends Controller
         return response()->json($input);
     }
 
-    public function profile (Request $request)
+    public function profile(Request $request)
     {
         $validator = Validator::make($request->all(), [
             "name" => "required",
@@ -68,8 +68,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
 
-        if($request->password)
-        {
+        if ($request->password) {
             $user->password = Hash::make($request->password);
         }
 
